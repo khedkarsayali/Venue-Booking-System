@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  .left-container,
+  .right-container {
+    flex: 1;
+    padding: 20px;
+    margin: 20px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+  }
+  
+  .left-container {
+    background-color: #ffffff;
+    border-radius: 10px 0 0 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .right-container {
+    background-color: #ffffff;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form {
+    width: 100%; /* Set width to 100% for responsiveness */
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  /* Input Element Styles */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  input[type="date"],
+  input[type="time"] {
+    width: calc(100% - 20px); /* Adjusted width to accommodate padding */
+    padding: 10px; /* Adjusted padding */
+    margin-bottom: 20px; /* Adjusted margin */
+    border: 1px solid #ccc; /* Changed border color */
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Button Styles */
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    margin-left: 300px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .calendar-button {
+    background-color: #bb75c0; /* Green color */
+    color: #fff;
+    border: none;
+    margin-left: 1300px;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .calendar-button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
