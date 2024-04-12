@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session,fl
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 import secrets
-import datetime
+from datetime import datetime, timedelta
 import random
 import json
 from sqlalchemy import or_
@@ -316,6 +316,94 @@ def add_user():
 def file4_OTP():
     return render_template('file4(OTP).html') """
 
+@app.route("/forgotpass", methods=['GET', 'POST'])
+def forgot():
+    error = None
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            flash('You are not an eligible user','error')
+        else:
+            if not email:
+                flash('Enter your email','error')
+            else:
+                otp = ''.join(random.choices('0123456789', k=5))
+                otp_add = Otp(email=email, otp=otp)
+                db.session.add(otp_add)
+                db.session.commit()
+                mail.send_message('OTP Request',
+                                sender="hackhustlers.com",
+                                recipients=[email],  # Pass email address as a list
+                                body=f"Your OTP is {otp}.\n Do not share this OTP with anyone.")
+                return redirect(url_for('file4_OTP', email=email))  # Pass the email to the next route
+    return render_template('index.html', error=error)
+
+@app.route("/file4(OTP)/<email>", methods=['GET', 'POST'])  # Added email parameter to the route
+def file4_OTP(email):
+    return render_template('file4(OTP).html', email=email)  # Pass the email to the template
+
+@app.route("/verify_otp", methods=['POST'])
+def verify_otp():
+    if request.method == 'POST':
+        otp_entered = request.form.get('otp')
+        email = request.form.get('email')  # Get the email from the form
+        otp_record = Otp.query.filter_by(email=email).first()
+        print(f"otp_entered:{otp_entered},{type(otp_entered)}")
+        print(f"otp_record:{otp_record.otp},{type(otp_record)}")
+        if otp_record.otp:
+            if int(otp_entered) == int(otp_record.otp):
+                return redirect(url_for('OTPchange_password', email=email))
+                
+
+            else:
+                return "Incorrect OTP"
+        else:
+            return "No OTP found for this email"
+    else:
+        return "Invalid request method"
+
+@app.route("/OTPchange_password/<email>", methods=['GET', 'POST'])  # Added email parameter to the route
+def OTPchange_password(email):
+    return render_template('OTPchange_password.html', email=email)
+
+@app.route("/change_passwordOtp", methods=['POST'])
+def change_password_otp():
+    if request.method == 'POST':
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+        email = request.form.get('email')
+
+        # Ensure the new password and confirm password match
+        if new_password != confirm_password:
+            return "Passwords do not match"
+
+        # Retrieve the email from the Otp table
+        otp_record = Otp.query.filter_by(email=email).first()
+        if not otp_record:
+            return "No OTP found for this email"
+        
+        # Retrieve the user from the User table based on the email
+        user = User.query.filter_by(email=otp_record.email).first()
+        if not user:
+            return "User not found"
+        
+        # Update the user's password
+        user.password = new_password
+        db.session.commit()
+        db.session.delete(otp_record)
+        db.session.commit()
+        return "Password updated successfully"
+    else:
+        return "Invalid request method"
+    
+def delete_old_otp():
+    threshold = datetime.utcnow() - timedelta(seconds=60)
+    old_otps = Otp.query.filter(Otp.timestamp < threshold).all()
+    for otp in old_otps:
+        db.session.delete(otp)
+    db.session.commit()
+
 #vaishnavi code : 
 
 @app.route('/approve/<int:event_id>')
@@ -523,14 +611,24 @@ def confirm_accept(event_id):
         if not vis_overlapping(event_date, start_time.strftime('%H:%M'), end_time.strftime('%H:%M'), hall_name):
             event.status = 'Accepted'
             db.session.commit()
-#Sending mail to be added
+#Sending mail added
+            mail.send_message('Mail for acceptance',
+                sender="hackhustler58@gmail.com",
+                recipients=[event.email],  # Pass email address as a list
+                body=f"Your request for event {event.event_name} has been accepted for date {event_date} from {start_time} to {end_time} at {hall_name}")
+            
             flash('Event has been accepted successfully!', 'success')
             return redirect(url_for('hall_requests'))  # Pass status parameter here
         else:
             # Handle the case when there is an overlap
             event.status = 'Rejected'
             db.session.commit()
-#Sending mail to be added        
+#Sending mail added 
+            mail.send_message('Mail for rejection',
+                sender="hackhustler58@gmail.com",
+                recipients=[event.email],  # Pass email address as a list
+                body=f"Your request for event {event.event_name} has been rejected for date {event_date} due to overlapping with another event")
+       
             flash('Event has been rejected due to overlapping!', 'danger')
             return redirect(url_for('hall_requests'))   # Pass status parameter here
 
@@ -540,7 +638,12 @@ def confirm_reject(event_id):
         event = Event.query.get_or_404(event_id)
         event.status = 'Rejected'
         db.session.commit()
-#Sending mail to be added
+#Sending mail added
+        mail.send_message('Mail for rejection',
+                sender="hackhustler58@gmail.com",
+                recipients=[event.email],  # Pass email address as a list
+                body=f"Your request for event {event.event_name} has been rejected for date {event.event_date} due to some unavoidable circumstances")
+        
     return redirect(url_for('hall_requests'))  # Pass status parameter here
 
 # vaishnavi routes ended 
