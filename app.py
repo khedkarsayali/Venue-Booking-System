@@ -643,6 +643,9 @@ def booking_form():
     venues = Venue.query.all()
     return render_template('overlap.html', venues=venues)
 
+@app.route('/calendar1',methods=['POST'])
+def calendar1():
+    return render_template('calendar1.html')
 
 
 def is_overlapping(event_date, new_start_str, new_end_str, hall_name):
