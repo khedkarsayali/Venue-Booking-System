@@ -1,0 +1,73 @@
+<span style="font-family: verdana, geneva, sans-serif"
+  ><!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Dashboard | By Code Info</title>
+      <link rel="stylesheet" href="/static/analytics.css" />
+      <!-- Font Awesome Cdn Link -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      />
+    </head>
+    <body>
+      <div class="container">
+        <section class="main">
+          <div class="main-top">
+            <h1>Skills</h1>
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="main-skills">
+            <div class="card">
+              <i class="fas fa-laptop-code"></i>
+              <h3>Venues</h3>
+              <p>Join Over 1 million Students.</p>
+              <div class="count"><h3>{{ total_venues }}</h3></div>
+            </div>
+            <div class="card">
+              <i class="fab fa-wordpress"></i>
+              <h3>Total Bookings</h3>
+              <p>Join Over 3 million Students.</p>
+              <div class="count"><h3>{{ total_bookings }}</h3></div>
+            </div>
+            <div class="card">
+              <i class="fas fa-palette"></i>
+              <h3>Total Users</h3>
+              <p>Join Over 2 million Students.</p>
+              <div class="count"><h3>{{ total_users }}</h3></div>
+            </div>
+          </div>
+
+          <section class="main-course">
+            <div class="charts">
+              <h2>Recent Bookings</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Event Name</th>
+                    <th>Manager Name</th>
+                    <th>Event Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for booking in recent_bookings %}
+                  <tr>
+                    <td>{{ booking.event_name }}</td>
+                    <td>{{ booking.manager_name }}</td>
+                    <td>{{ booking.event_date }}</td>
+                    <td>{{ booking.start_time }}</td>
+                    <td>{{ booking.end_time }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="charts"></div>
+          </section>
+        </section>
+      </div>
+    </body></html
+></span>

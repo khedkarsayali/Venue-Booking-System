@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registration Form</title>
+  <link rel="stylesheet" href="/static/style2.css">
+  <script>
+    function updateRequestTime() {
+      var currentTime = new Date();
+      var formattedTime = currentTime.toISOString().slice(0, 19).replace("T", " ");
+      document.getElementById("requestCreatedAt").value = formattedTime;
+    }
+
+    // Update the request time every second
+    setInterval(updateRequestTime, 1000);
+
+    // Disable past dates and allow selection from two days later
+    window.onload = function() {
+      var today = new Date();
+      var todayStr = today.toISOString().split('T')[0];
+      today.setDate(today.getDate() + 7); // Add one week
+      var minDate = today.toISOString().split('T')[0];
+      document.getElementById("eventDate").setAttribute("min", minDate);
+    };
+  </script>
+</head>
+<body>
+
+  <h2>Event Registration Form</h2>
+
+  <form action="/booking_form" method="POST" onsubmit="updateRequestTime()">
+    <!-- Event Name -->
+    <label for="eventName"><span style="color: red;">*</span>Event Name:</label>
+    <input type="text" id="eventName" name="eventName" required><br>
+
+    <!-- Event Manager Name -->
+    <label for="eventManagerName"><span style="color: red;">*</span>Event Manager Name:</label>
+    <input type="text" id="eventManagerName" name="eventManagerName" required><br>
+
+    <!-- Organizing Club Name -->
+    <label for="orgClubName">Organizing Club Name:</label>
+    <input type="text" id="orgClubName" name="orgClubName"><br>
+    <small>Leave blank if not applicable.</small><br>
+
+    <!-- Event Date -->
+    <label for="eventDate"><span style="color: red;">*</span>Event Date:</label>
+    <input type="date" id="eventDate" name="eventDate" required><br>
+
+    <!-- Start Time -->
+    <label for="startTime"><span style="color: red;">*</span>Start Time:</label>
+    <input type="time" id="startTime" name="startTime" required>
+
+    <!-- End Time -->
+    <label for="endTime"><span style="color: red;">*</span>End Time:</label>
+    <input type="time" id="endTime" name="endTime" required>
+
+    <!-- Hall Name -->
+    <label for="hallName"><span style="color: red;">*</span>Hall Name:</label>
+    <select id="hallName" name="hallName" required>
+      {% for venue in venues %}
+      <option value="{{ venue.name }}">{{ venue.name }}</option>
+    {% endfor %}
+    </select><br>
+
+    <!-- Email -->
+    <label for="email"><span style="color: red;">*</span>Email:</label>
+    <input type="email" id="email" name="email" required>
+    <small>Enter a college email ID.</small><br>
+
+    <!-- Phone Number -->
+    <label for="phoneNumber"><span style="color: red;">*</span>Phone Number:</label>
+    <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required>
+    <small>Enter a 10-digit phone number without spaces or dashes.</small><br>
+
+    <!-- Department -->
+    <label for="department">Department:</label>
+    <input type="text" id="department" name="department"><br>
+    <small>Leave blank if not applicable.</small><br>
+
+    <!-- Request Created At (Automatically updated every second) -->
+    <label for="requestCreatedAt">Request Created At:</label>
+    <input type="text" id="requestCreatedAt" name="requestCreatedAt" readonly>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+  <!-- <form action="/calendar" method="post">
+    <button type="submit">Go to calender</button>
+  </form>  -->
+  <form action="/calendar1" method="post">
+    <button type="submit">Go to calender</button>
+  </form> 
+</body>
+</html>
+
+
+
+
+
+

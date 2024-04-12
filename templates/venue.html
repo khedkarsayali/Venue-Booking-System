@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue Cards</title>
+    <link rel="stylesheet" href="/static/home.css" />
+    <style>
+      /* Add custom CSS for spacing */
+      .container {
+        margin-bottom: 20px; /* Adjust this value to change the spacing */
+      }
+    </style>
+  </head>
+  <header>
+    
+  </header>
+  <body>
+    <div class="venues">
+      <div class="navigation-arrow arrow-left">
+        <a href="{{prev}}">&larr; Previous </a>
+      </div>
+      {% for venue in venue %}
+
+      <div class="halls">
+        <div class="container">
+          <div class="card">
+            <img
+              src="{{url_for('static', filename='assets/'+ venue.imgfile)}} "
+              alt="img"
+            />
+            <div class="intro">
+              <h1>{{ venue.name }}</h1>
+              <p>{{venue.features}}</p>
+            </div>
+          </div>
+          <a href="\book.html"
+            ><button class="book-now" href="">BOOK NOW</button></a
+          >
+        </div>
+      </div>
+      {% endfor %}
+      <div class="navigation-arrow arrow-right"><a href="{{next}}">Next &rarr;</a></div>
+      
+    <script src="/static/home.js"></script>
+    <script src="/static/modal.js"></script>
+
+  </body>
+</html>
