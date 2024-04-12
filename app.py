@@ -102,6 +102,15 @@ class Otp(db.Model):
     email = db.Column(db.String(255), nullable=False, unique=True)
     otp = db.Column(db.Integer, nullable=True)
 
+class Contacts(db.Model):
+    # sno, Name, Email, Phone_num, msg, date
+    sno = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    phonenum = db.Column(db.String(255), nullable=False)
+    msg = db.Column(db.String(255), nullable=False)
+    date = db.Column(db.String(255), nullable=True)
+    email = db.Column(db.String(255), nullable=False)
+
 @app.route('/logout')
 def logout():
     db.session.query(islogin).delete()
@@ -706,7 +715,28 @@ def fetch_events():
         print(f"An error occurred: {e}")
         return jsonify({'error': 'An error occurred while fetching events'}), 500
 
+# contact route
 
+@app.route("/contact", methods=['GET', 'POST'])
+def contact():
+        # if 'user' not in session:
+        # return redirect('/')
+    if request.method == 'POST':
+        '''add entry to the database'''
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        message = request.form.get('message')
+
+        entry = Contacts(name=name, phonenum=phone, msg=message, email=email, date=datetime.now)
+        db.session.add(entry)
+        db.session.commit()
+        mail.send_message(name + 'from COEP VENUE BOOKING WEBSITE wants to contact with you' ,
+                          sender=email,
+                          body=message + "\n" + phone,
+                          recipients=[params['gmail-user']]
+                          )
+    return render_template('contact.html', params=params)
 
 if __name__ == "__main__":
     app.run(debug=True)
