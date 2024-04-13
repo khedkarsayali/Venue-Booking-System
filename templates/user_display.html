@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requests</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/usernav.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Custom CSS for buttons */
+        .btn-group .btn {
+            margin-right: 5px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="navbar">
+          <!-- <i class='bx bx-menu'></i> -->
+          <div class="logo"><a href="#">HackHustlers</a></div>
+          <div class="nav-links">
+            <div class="sidebar-logo">
+              <span class="logo-name">HackHustlers</span>
+              <i class='bx bx-x' ></i>
+            </div>
+            <ul class="links">
+              <li><a href="{{url_for('dashboard')}}">HOME</a></li>
+              <li><a href="{{url_for('venue')}}">VENUES</a></li>
+              <li><a href="{{url_for('booking_form')}}">BOOKING</a></li>
+              <li><a href="{{url_for('hall_requests_user')}}">REQUESTS STATUS</a></li>
+              <li><a href="{{url_for('calendar_user')}}">CALENDER</a></li>
+              <li>
+                <a href="{{url_for('profile')}}">PROFILE</a>
+                <i class='bx bxs-chevron-down js-arrow arrow '></i>
+                <ul class="js-sub-menu sub-menu">
+                  <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+                </ul>
+              </li>
+              <li><a href="{{url_for('contact')}}">CONTACT</a></li>
+            </ul>
+          </div>
+          
+        </div>
+      </nav>
+
+    <div class="container mt-5">
+        <h1>Requests</h1>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Event Name</th>
+                    <th>Manager Name</th>
+                    <th>Event Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in user_events %}
+                <tr>
+                    <td>{{ event.event_name }}</td>
+                    <td>{{ event.manager_name }}</td>
+                    <td>{{ event.event_date }}</td>
+                    <td>{{ event.start_time }}</td>
+                    <td>{{ event.end_time }}</td>
+                    <td>{{ event.status }}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Actions">
+                            <a href="{{ url_for('view_event_user', event_id=event.sno) }}" class="btn btn-primary">View</a>
+                            <button onclick="handleCancel({{ event.sno }})" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for cancelling event -->
+    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelModalLabel">Cancel Event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-secondary">Are you sure you want to cancel this event?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form id="cancelForm" action="" method="POST">
+                        <input type="hidden" name="action" value="cancel">
+                        <button type="submit" class="btn btn-danger">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS bundle -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Function to handle click event on Cancel button
+        function handleCancel(eventId) {
+            var cancelForm = document.getElementById('cancelForm');
+            // Set the action attribute of the form dynamically based on the event ID
+            cancelForm.action = "/confirm_cancel/" + eventId;
+            $('#cancelModal').modal('show'); // Show the modal
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registration Form</title>
+  <link rel="stylesheet" href="/static/overlap.css">
+  <link rel="stylesheet" href="/static/usernav.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+  <script>
+    function updateRequestTime() {
+      var currentTime = new Date();
+      var formattedTime = currentTime.toISOString().slice(0, 19).replace("T", " ");
+      document.getElementById("requestCreatedAt").value = formattedTime;
+    }
+
+    // Update the request time every second
+    setInterval(updateRequestTime, 1000);
+
+    // Disable past dates and allow selection from two days later
+    window.onload = function () {
+      var today = new Date();
+      var todayStr = today.toISOString().split('T')[0];
+      today.setDate(today.getDate() + 2); // Add two days
+      var minDate = today.toISOString().split('T')[0];
+      document.getElementById("eventDate").setAttribute("min", minDate);
+    };
+  </script>
+</head>
+
+<body>
+  <nav>
+    <div class="navbar">
+      <!-- <i class='bx bx-menu'></i> -->
+      <div class="logo"><a href="#">HackHustlers</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">HackHustlers</span>
+          <i class='bx bx-x' ></i>
+        </div>
+        <ul class="links">
+          <li><a href="{{url_for('dashboard')}}">HOME</a></li>
+          <li><a href="{{url_for('venue')}}">VENUES</a></li>
+          <li><a href="{{url_for('booking_form')}}">BOOKING</a></li>
+          <li><a href="{{url_for('hall_requests_user')}}">REQUESTS STATUS</a></li>
+          <li><a href="{{url_for('calendar_user')}}">CALENDER</a></li>
+          <li>
+            <a href="{{url_for('profile')}}">PROFILE</a>
+            <i class='bx bxs-chevron-down js-arrow arrow '></i>
+            <ul class="js-sub-menu sub-menu">
+              <li><a href="{{url_for('logout')}}">LOGOUT</a></li>
+            </ul>
+          </li>
+          <li><a href="{{url_for('contact')}}">CONTACT</a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </nav>
+
+
+  <h2 style="margin-left: 35px;">Event Registration Form</h2>
+  <form action="/calendar1" method="post">
+    <button type="submit" class="calendar-button">Go to calender</button>
+  </form>
+  <div class="container">
+      <div class="formhead">
+        <h3>EVENT DETAILS</h3>
+      </div>
+      <form action="/booking_form" method="POST" onsubmit="updateRequestTime()">
+        <!-- Event Name -->
+        <label for="eventName"><span style="color: red;">*</span>Event Name:</label>
+        <input type="text" id="eventName" name="eventName" required><br>
+
+        <!-- Event Manager Name -->
+        <label for="eventManagerName"><span style="color: red;">*</span>Event Manager Name:</label>
+        <input type="text" id="eventManagerName" name="eventManagerName" required><br>
+
+        
+        <!-- Hall Name -->
+        <label for="hallName"><span style="color: red;">*</span>Hall Name:</label>
+        <select id="hallName" name="hallName" required>
+          {% for venue in venues %}
+          <option value="{{ venue.name }}">{{ venue.name }}</option>
+          {% endfor %}
+        </select><br>
+        
+
+        <!-- Event Date -->
+        <label for="eventDate"><span style="color: red;">*</span>Event Date:</label>
+        <input type="date" id="eventDate" name="eventDate" required><br>
+        <div class="formtime">
+          <!-- Start Time -->
+        <label for="startTime"><span style="color: red;">*</span>Start Time:</label>
+        <input type="time" id="startTime" name="startTime" required>
+
+        <!-- End Time -->
+        <label for="endTime"><span style="color: red;">*</span>End Time:</label>
+        <input type="time" id="endTime" name="endTime" required>
+
+
+      
+        
+
+    </div>
+       <!-- Organizing Club Name -->
+       <!-- <label for="orgClubName">Organizing Club Name:</label>
+       <input type="text" id="orgClubName" name="orgClubName" placeholder="Leave blank if not applicable"><br> -->
+
+
+
+
+       <label for="orgClubName">Organizing Club Name:</label>
+        <select id="orgClubName" name="clubname" required>
+          <option value="none">none</option>
+          {% for club_name in club_names %}
+          <option value="{{ club_name }}">{{ club_name }}</option>
+          {% endfor %}
+        </select><br>
+
+     <!-- Department -->
+     <label for="department">Department:</label>
+     <input type="text" id="department" name="department" placeholder="Leave blank if not applicable."><br>
+
+     <div class="formtime">
+     <!-- Email -->
+     <label for="email"><span style="color: red;">*</span>Email:</label>
+     <input type="email" id="email" name="email" required placeholder="Enter a college email ID.">
+
+
+     <!-- Phone Number -->
+     <label for="phoneNumber"><span style="color: red;">*</span>Phone Number:</label>
+     <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required
+       placeholder="Enter a 10-digit phone number without spaces or dashes.">
+      </div>
+     <!-- Request Created At (Automatically updated every second) -->
+     <label for="requestCreatedAt">Request Created At:</label>
+     <input type="text" id="requestCreatedAt" name="requestCreatedAt" readonly>
+    
+      
+      
+        
+       
+      <!-- Submit Button -->
+      <button type="submit" class="submit-button">Submit</button>
+      </form>
+
+      <!-- <form action="/calendar" method="post">
+    <button type="submit">Go to calender</button>
+  </form>  -->
+      
+   
+
+  </div>
+
+</body>
+
+</html>

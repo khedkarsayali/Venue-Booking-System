@@ -1,0 +1,114 @@
+<span style="font-family: verdana, geneva, sans-serif"
+  ><!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Dashboard | By Code Info</title>
+      <link rel="stylesheet" href="/static/analytics.css" />
+      <link rel="stylesheet" href="/static/usernav.css">
+      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <!-- Font Awesome Cdn Link -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      />
+    </head>
+    <body>
+      <nav>
+        <div class="navbar">
+          <!-- <i class='bx bx-menu'></i> -->
+          <div class="logo"><a href="#">Hack huslters</a></div>
+          <div class="nav-links">
+            <div class="sidebar-logo">
+              <span class="logo-name">Hack hustlers</span>
+              <i class='bx bx-x' ></i>
+            </div>
+            <ul class="links">
+                <li><a href="{{url_for('super_admindashboard')}}">HOME</a></li>
+                <li><a href="{{url_for('home_super')}}">Venues</a></li>
+                <li><a href="{{url_for('hall_requests_super')}}">Requests</a></li>
+                <li><a href="{{url_for('calendar_admin_super')}}">Calender</a></li> 
+                <!-- admin calender .... this niieds to be updated -->
+                <li><a href="{{url_for('analytics')}}">Analytics</a></li>
+                <li><a href="{{url_for('go_to_add_user')}}">Manage Users</a></li>
+            </ul>
+          </div>
+          
+        </div>
+      </nav>
+      <div class="container">
+        <section class="main">
+          <div class="main-top">
+            <h1>Skills</h1>
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="main-skills">
+            <div class="card">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+              <h2>Venues</h2>
+              <p>All the venues available</p>
+              <div class="count"><h3>{{ total_venues }}</h3></div>
+            </div>
+            <div class="card">
+              <i class="fa fa-bookmark" aria-hidden="true"></i>
+              <h2>Bookings</h2>
+              <p>Total bookings done this year</p>
+              <div class="count"><h3>{{ total_bookings }}</h3></div>
+            </div>
+            <div class="card">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <h2>Total Users</h2>
+              <p>Total eligible Users</p>
+              <div class="count"><h3>{{ total_users }}</h3></div>
+            </div>
+          </div>
+
+          <section class="main-course">
+            <div class="charts">
+              <h2>Recent Bookings</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Event Name</th>
+                    <th>Manager Name</th>
+                    <th>Event Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for booking in recent_bookings %}
+                  <tr>
+                    <td>{{ booking.event_name }}</td>
+                    <td>{{ booking.manager_name }}</td>
+                    <td>{{ booking.event_date }}</td>
+                    <td>{{ booking.start_time }}</td>
+                    <td>{{ booking.end_time }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="charts2">
+              <h1>Hall Stats</h1>
+              <img src="{{ url_for('static', filename='hall_stats.png') }}" alt="Hall Stats">
+            </div>
+          </section>
+          <form action="{{ url_for('generate_pdf') }}" method="post">
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required><br><br>
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required><br><br>
+            <label for="venue">Select Venue:</label>
+            <select id="venue" name="venue">
+                <option value="all">All Venues</option>
+                {% for venue in venues %}
+                    <option value="{{ venue.name }}">{{ venue.name }}</option>
+                {% endfor %}
+            </select><br><br>
+            <input type="submit" value="Generate Report">
+        </form>
+        </section>
+      </div>
+    </body></html
+></span>

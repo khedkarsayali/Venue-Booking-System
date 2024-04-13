@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/static/addvenue.css">
+</head>
+<body>
+  <div class="login-box">
+    <h2>Venue Information</h2>
+    <form action="/edit/{{sno}}" method="post" enctype="multipart/form-data"  novalidate>
+      <div class="user-box">
+        <input type="text" name="name" required="" value="{{venue.name}}">
+        <label>Venue Name</label>
+      </div>
+      <div class="user-box">
+        <input type="number" name="capacity" required="" value="{{venue.capacity}}" >
+        <label>Capacity</label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="features" required="" value="{{venue.features}}">
+        <label>Features</label>
+      </div>
+      <div class="user-box">
+        <input type="text" name="imgfile" required="" value="{{venue.imgfile}}">
+        <label>Image Filename</label>
+      </div>
+      <div class="user-box">
+        <input type="file" name="file1" id="file1" accept="image/*" required="">
+        <label for="image">Upload Image</label>
+      </div>
+      <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <button type="submit"> Submit </button>
+      </a>
+      
+    </form>
+  </div>
+</body>
+</html>

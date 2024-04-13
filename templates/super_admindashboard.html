@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/usernav.css">
+    <link rel="stylesheet" href="/static/dashboard.css">
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <!-- <i class='bx bx-menu'></i> -->
+          <div class="logo"><a href="#">Hack huslters</a></div>
+          <div class="nav-links">
+            <div class="sidebar-logo">
+              <span class="logo-name">Hack hustlers</span>
+              <i class='bx bx-x' ></i>
+            </div>
+            <ul class="links">
+                <li><a href="{{url_for('super_admindashboard')}}">HOME</a></li>
+                <li><a href="{{url_for('home_super')}}">Venues</a></li>
+                <li><a href="{{url_for('hall_requests_super')}}">Requests</a></li>
+                <li><a href="{{url_for('calendar_admin_super')}}">Calender</a></li> 
+                <!-- admin calender .... this niieds to be updated -->
+                <li><a href="{{url_for('analytics')}}">Analytics</a></li>
+                <li><a href="{{url_for('go_to_add_user')}}">Manage Users</a></li>
+            </ul>
+          </div>
+          
+        </div>
+      </nav>
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Welcome to <br>VENUE BOOKING SYSTEM</h1>
+          
+        </div>
+      </section>
+</body>
+</html>

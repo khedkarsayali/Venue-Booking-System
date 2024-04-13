@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venue Cards</title>
+    <link rel="stylesheet" href="/static/home.css">
+    <link rel="stylesheet" href="/static/usernav.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+      /* Add custom CSS for spacing */
+      .container {
+        margin-bottom: 20px; /* Adjust this value to change the spacing */
+      }
+    </style>
+  </head>
+  <header>
+    
+  </header>
+  <body>
+    <nav>
+      <div class="navbar">
+        <!-- <i class='bx bx-menu'></i> -->
+        <div class="logo"><a href="#">Hack huslters</a></div>
+        <div class="nav-links">
+          <div class="sidebar-logo">
+            <span class="logo-name">Hack hustlers</span>
+            <i class='bx bx-x' ></i>
+          </div>
+          <ul class="links">
+              <li><a href="{{url_for('super_admindashboard')}}">HOME</a></li>
+              <li><a href="{{url_for('home_super')}}">Venues</a></li>
+              <li><a href="{{url_for('hall_requests_super')}}">Requests</a></li>
+              <li><a href="{{url_for('calendar_admin_super')}}">Calender</a></li> 
+              <!-- admin calender .... this niieds to be updated -->
+              <li><a href="{{url_for('analytics')}}">Analytics</a></li>
+              <li><a href="{{url_for('go_to_add_user')}}">Manage Users</a></li>
+          </ul>
+        </div>
+        
+      </div>
+    </nav>
+    <div class="addvenuebutton"><button class="add-button"><a href="/addvenue">Add More Venues</button></a></div>
+    <div class="venues">
+
+      
+      <div class="navigation-arrow arrow-left">
+        <a href="{{prev}}">&larr;</a>
+      </div>
+      {% for venue in venue %}
+
+      <div class="halls">
+        <div class="container">
+          <div class="card">
+            <img
+              src="{{url_for('static', filename='assets/'+ venue.imgfile)}} "
+              alt="img"
+            />
+            <div class="intro">
+              <h1>{{ venue.name }}</h1>
+              <p>{{venue.features}}</p>
+            </div>
+          </div>
+          <div class="button-container">
+            <div class="edit-button">
+              <a href="/edit/{{venue.sno}}"
+                ><button class="edit-now"   onclick="handleEditDelete('{{ venue.sno }}', 'edit')">EDIT</button></a>
+              </div>
+              <div>
+              <a href="/delete/{{venue.sno}}"
+                ><button class="delete-now" onclick="handleEditDelete('{{ venue.sno }}', 'delete')">DELETE</button></a>
+            </div>
+          </div>
+
+      </div>
+      {% endfor %}
+      <div class="navigation-arrow arrow-right">
+        <a href="{{next}}">&rarr;</a>
+      </div>
+      
+      
+    <script src="/static/home.js"></script>
+    <script src="/static/modal.js"></script>
+
+  </body>
+</html>

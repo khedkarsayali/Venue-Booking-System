@@ -1,0 +1,561 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  font-family: sans-serif;
+}
+body{ 
+  justify-content: center;
+  height: 100vh;
+  background: whitesmoke;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+/* display: flex;  Use flexbox */
+justify-content: center; /* Center align items horizontally */
+flex-wrap: wrap; /* Allow items to wrap to the next line */
+}
+.venues{
+display: flex;
+justify-content: center;
+margin: 100px;
+}
+
+.card {
+flex: 0 0 350px; /* Set fixed width for each card */
+height: 500px;
+margin: 0 20px 20px 0; /* Add margin between cards */
+box-shadow: 5px 5px 20px black;
+overflow: hidden;
+}
+
+@media (max-width: 768px) {
+.card {
+  flex-basis: calc(50% - 40px); /* Adjust card width for smaller screens */
+}
+}
+
+@media (max-width: 576px) {
+.card {
+  flex-basis: calc(100% - 40px); /* Adjust card width for smaller screens */
+}
+}
+
+.halls{
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background: whitesmoke;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+}
+/* /* .container{
+  display: flex;  
+} */
+.card{
+  height: 500px;
+  margin: 50px;
+  box-shadow: 5px 5px 20px black;
+  overflow: hidden;
+}
+img{
+  height: 500px;
+  width: 350px;
+  border-radius: 3px;
+  transition: .5s;
+}
+
+.intro{
+  height: 70px;
+  width: 350px;
+  padding: 6px;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 240px;
+  background: rgb(27, 27, 27, .5);
+  color: white;
+  transition: .5s;
+}
+
+h1{
+  margin: 10px;
+  font-size: 40px;
+}
+R{
+  font-size: 20px;
+  margin: 20px;
+  visibility: hidden;
+  opacity: 0;
+}
+
+span{
+  font-weight: bold;
+}
+
+.card:hover{
+  cursor: pointer;
+}
+.card:hover .intro{
+  height: 220px;
+  bottom: 240px;
+  background: black;
+}
+.card:hover p{
+  opacity: 1;
+  visibility: visible;
+}
+.card:hover img{
+  transform: scale(1.1) rotate(-3deg);
+}
+
+
+/* */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+font-family: 'Roboto', sans-serif;
+}
+* {
+margin: 0;
+padding: 0;
+}
+i {
+margin-right: 10px;
+}
+
+.navbar-logo{
+padding: 15px;
+color: #fff;
+}
+.navbar-mainbg{
+background-color: #5161ce;
+padding: 0px;
+}
+#navbarSupportedContent{
+overflow: hidden;
+position: relative;
+}
+#navbarSupportedContent ul{
+padding: 0px;
+margin: 0px;
+}
+#navbarSupportedContent ul li a i{
+margin-right: 10px;
+}
+#navbarSupportedContent li {
+list-style-type: none;
+float: left;
+}
+#navbarSupportedContent ul li a{
+color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 15px;
+  display: block;
+  padding: 20px 20px;
+  transition-duration:0.6s;
+transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+}
+#navbarSupportedContent>ul>li.active>a{
+color: #5161ce;
+background-color: transparent;
+transition: all 0.7s;
+}
+#navbarSupportedContent a:not(:only-child):after {
+content: "\f105";
+position: absolute;
+right: 20px;
+top: 10px;
+font-size: 14px;
+font-family: "Font Awesome 5 Free";
+display: inline-block;
+padding-right: 3px;
+vertical-align: middle;
+font-weight: 900;
+transition: 0.5s;
+}
+#navbarSupportedContent .active>a:not(:only-child):after {
+transform: rotate(90deg);
+}
+.hori-selector{
+display:inline-block;
+position:absolute;
+height: 100%;
+top: 0px;
+left: 0px;
+transition-duration:0.6s;
+transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+background-color: #fff;
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+margin-top: 10px;
+}
+.hori-selector .right,
+.hori-selector .left{
+position: absolute;
+width: 25px;
+height: 25px;
+background-color: #fff;
+bottom: 10px;
+}
+.hori-selector .right{
+right: -25px;
+}
+.hori-selector .left{
+left: -25px;
+}
+.hori-selector .right:before,
+.hori-selector .left:before{
+content: '';
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #5161ce;
+}
+.hori-selector .right:before{
+bottom: 0;
+  right: -25px;
+}
+.hori-selector .left:before{
+bottom: 0;
+  left: -25px;
+}
+
+
+@media(min-width: 992px){
+.navbar-expand-custom {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+.navbar-expand-custom .navbar-nav {
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.navbar-expand-custom .navbar-toggler {
+    display: none;
+}
+.navbar-expand-custom .navbar-collapse {
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+}
+}
+
+
+@media (max-width: 991px){
+#navbarSupportedContent ul li a{
+  padding: 12px 30px;
+}
+.hori-selector{
+  margin-top: 0px;
+  margin-left: 10px;
+  border-radius: 0;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+.hori-selector .left,
+.hori-selector .right{
+  right: 10px;
+}
+.hori-selector .left{
+  top: -25px;
+  left: auto;
+}
+.hori-selector .right{
+  bottom: -25px;
+}
+.hori-selector .left:before{
+  left: -25px;
+  top: -25px;
+}
+.hori-selector .right:before{
+  bottom: -25px;
+  left: -25px;
+}
+}
+/* Your existing CSS */
+/* Your existing CSS */
+
+/* Styling for the button */
+.book-now {
+background-color: #5161ce; /* Button background color */
+color: white; /* Text color */
+border: none;
+padding: 15px 30px; /* Initial padding around the button */
+margin-top: 20px; /* Spacing between card and button */
+cursor: pointer;
+transition: background-color 0.3s, transform 0.3s, padding 0.3s; /* Transition for background color, transform, and padding */
+font-size: 18px; /* Increase font size */
+border-radius: 5px; /* Rounded corners */
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow */
+}
+
+/* Hover effect for the button */
+.book-now:hover {
+background-color: #5161ce; /* Button background color on hover */
+transform: scale(1.1); /* Enlarge the button on hover */
+padding: 15px 30px; /* Maintain the same padding on hover */
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Increase box shadow on hover */
+}
+
+.edit-now{
+background-color: #c591d9;
+color: white; /* Text color */
+border: none;
+padding: 15px 30px; /* Initial padding around the button */
+margin-top: 20px; /* Spacing between card and button */
+cursor: pointer;
+transition: background-color 0.3s, transform 0.3s, padding 0.3s; /* Transition for background color, transform, and padding */
+font-size: 18px; /* Increase font size */
+border-radius: 5px; /* Rounded corners */
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow */
+
+}
+
+
+.delete-now{
+background-color: #c591d9;
+color: white; /* Text color */
+border: none;
+padding: 15px 30px; /* Initial padding around the button */
+margin-top: 20px; /* Spacing between card and button */
+cursor: pointer;
+transition: background-color 0.3s, transform 0.3s, padding 0.3s; /* Transition for background color, transform, and padding */
+font-size: 18px; /* Increase font size */
+border-radius: 5px; /* Rounded corners */
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow */
+
+}
+
+.container {
+position: relative; /* Ensure positioning context */
+}
+
+.book-now {
+position: absolute;
+bottom: 10px; /* Adjust as needed */
+left: 50%; /* Center horizontally */
+transform: translateX(-50%); /* Center horizontally */
+}
+.add-venue {
+position: fixed;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+background-color: #007bff;
+color: white;
+border: none;
+padding: 15px 30px;
+cursor: pointer;
+border-radius: 5px;
+font-size: 18px;
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-venue:hover {
+background-color: #0056b3;
+transform: scale(1.1);
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* CSS for navigation arrows */
+
+
+.navigation-arrow a {
+  text-decoration: none;
+  color: white;
+}
+
+.navigation-arrow a:hover {
+  color: #ccc; /* Adjust hover color as desired */
+}
+
+/* .navigation-arrow:hover {
+background-color: rgba(0, 0, 0, 0.7);
+}
+
+.arrow-left {
+left: 0;
+}
+
+.arrow-right {
+right: 0;
+} */
+
+.navigation-arrow {
+  position: absolute;
+  top: 50%; /* Align vertically in the middle */
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s;
+}
+
+.arrow-left {
+  margin-top: 200px;
+  left: 0;
+}
+
+.arrow-right {
+  margin-top: 200px;
+  right: 0;
+}
+
+
+/* The Modal (background) */
+.modal {
+display: none;
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content/Box */
+.modal-content {
+background-color: #fefefe;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+}
+
+/* Close Button */
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+.add-venue {
+position: absolute;
+top: 10px;
+right: 10px;
+}
+
+.addvenuebutton{
+  display: flex;
+  margin-top: 100px;
+  justify-content: center;
+}
+
+.add-button{
+  text-decoration: none;
+  background-color: #c591d9;
+  color: white; /* Text color */
+  border: none;
+  padding: 15px 30px; /* Initial padding around the button */
+  margin-top: 20px; /* Spacing between card and button */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, padding 0.3s; /* Transition for background color, transform, and padding */
+  font-size: 18px; /* Increase font size */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow */
+}
+
+.edit-button{
+  justify-content: center;
+}
+
+/* Your existing CSS */
+
+/* Styling for the button */
+.book-now {
+  background-color: #5161ce; /* Button background color */
+  color: white; /* Text color */
+  border: none;
+  padding: 15px 30px; /* Initial padding around the button */
+  margin-top: 20px; /* Spacing between card and button */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, padding 0.3s; /* Transition for background color, transform, and padding */
+  font-size: 18px; /* Increase font size */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow */
+}
+
+/* Hover effect for the button */
+.book-now:hover {
+  background-color: #5161ce; /* Button background color on hover */
+  transform: scale(1.1); /* Enlarge the button on hover */
+  padding: 15px 30px; /* Maintain the same padding on hover */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Increase box shadow on hover */
+}
+
+.edit-now{
+  background-color: #c591d9;
+  color: white; /* Text color */
+  border: none;
+  padding: 15px 30px; /* Initial padding around the button */
+  margin-top: 20px; /* Spacing between card and button */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, padding 0.3s; /* Transition for background color, transform, and padding */
+  font-size: 18px; /* Increase font size */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow */
+}
+
+.delete-now{
+  background-color: #c591d9;
+  color: white; /* Text color */
+  border: none;
+  padding: 15px 30px; /* Initial padding around the button */
+  margin-top: 20px; /* Spacing between card and button */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, padding 0.3s; /* Transition for background color, transform, and padding */
+  font-size: 18px; /* Increase font size */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Box shadow */
+}
+
+.container {
+  position: relative; /* Ensure positioning context */
+}
+
+/* Center the buttons below the cards */
+.edit-button,
+.delete-button {
+  text-align: center;
+}
+
+.edit-button button,
+.delete-button button {
+  display: inline-block;
+}
+
+/* CSS for button container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px; /* Adjust spacing between edit and delete buttons */
+}
+
+/* CSS for edit and delete buttons */
+.edit-button,
+.delete-button {
+  margin-right: 10px; /* Adjust spacing between buttons */
+}

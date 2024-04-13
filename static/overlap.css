@@ -1,0 +1,104 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 0px;
+  background-color: #ffffff;
+  align-items: center;
+  justify-content: center;
+  border-radius: 17px;
+  margin-top: 40px;
+}
+
+.container form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align form items to the start */
+  width:80%;
+}
+
+.formhead {
+  width: 100%;
+  background-color: #aec8e5;
+  height: 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.formhead h3 {
+  margin-left: 30px;
+  font-size: 40px;
+}
+
+.formtime {
+  display: flex;
+  width: 100%; /* Ensure the time inputs take full width */
+
+  padding-bottom: 20px;
+}
+
+.formtime input[type="time"] {
+  flex: 1; /* Take remaining space */
+  margin-right: 10px; /* Add some spacing between time inputs */
+}
+
+/* Input Element Styles */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+input[type="date"] {
+  width: 100%; /* Set width to 100% */
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+/* Button Styles */
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  margin-left: 300px;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.calendar-button {
+  background-color: #bb75c0; /* Green color */
+  color: #fff;
+  border: none;
+  margin-left: 1300px;
+  margin-top:70px;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.calendar-button:hover {
+  background-color: #218838; /* Darker green on hover */
+}

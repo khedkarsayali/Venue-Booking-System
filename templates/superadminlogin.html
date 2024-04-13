@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/superadminlogin.css"> 
+    <title>Login Form</title>
+</head>
+<body>
+    <div class="body">
+    <div class="wrapper">
+        <h1>Authority Login</h1>
+        <form action="/superadminlogin" method="post">
+            <input type="text" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="submit" value="Login">
+        </form>
+
+        <div class="link">
+            <a class="nav-link" href="{{ url_for('login') }}"><p>User Login </p></a>
+          </div>
+    </div>
+</div>
+
+</body>
+</html>

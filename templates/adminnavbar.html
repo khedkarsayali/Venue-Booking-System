@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   <title> Responsive Drop Down Navigation Menu | CodingLab </title>
+    <link rel="stylesheet" href="/static/usernav.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <nav>
+    <div class="navbar">
+      <!-- <i class='bx bx-menu'></i> -->
+      <div class="logo"><a href="#">Hack huslters</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">Hack hustlers</span>
+          <i class='bx bx-x' ></i>
+        </div>
+        <ul class="links">
+            <li><a href="{{url_for('admindashboard')}}">HOME</a></li>
+            <li><a href="{{url_for('home')}}">Venues</a></li>
+            <li><a href="{{url_for('hall_requests')}}">Requests</a></li>
+            <li><a href="{{url_for('calendar_admin')}}">Calender</a></li> 
+            <!-- admin calender .... this niieds to be updated -->
+            <li><a href="{{url_for('analytics')}}">Analytics</a></li>
+            <li><a href="{{url_for('go_to_add_user')}}">Manage Users</a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </nav>
+  <script src="/static/user.css"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="/static/userProfile.css">
+    <link rel="stylesheet" href="/static/usernav.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+          <!-- <i class='bx bx-menu'></i> -->
+          <div class="logo"><a href="#">HackHustlers</a></div>
+          <div class="nav-links">
+            <div class="sidebar-logo">
+              <span class="logo-name">HackHustlers</span>
+              <i class='bx bx-x' ></i>
+            </div>
+            <ul class="links">
+              <li><a href="{{url_for('admindashboard')}}">HOME</a></li>
+              <li><a href="{{url_for('home')}}">VENUES</a></li>
+              <li><a href="{{url_for('booking_form_admin')}}">BOOKING</a></li>
+              <li><a href="{{url_for('hall_requests')}}">REQUESTS STATUS</a></li>
+              <li><a href="#">REQUESTS STATUS 2</a></li>
+              <li><a href="{{url_for('calendar_admin')}}">CALENDER</a></li>
+              <li>
+                <a href="{{url_for('admin_profile')}}">PROFILE</a>
+                <i class='bx bxs-chevron-down js-arrow arrow '></i>
+                <ul class="js-sub-menu sub-menu">
+                  <li><a href="{{url_for('logout_admin')}}">LOGOUT</a></li>
+                </ul>
+              </li>
+              <li><a href="{{url_for('contact')}}">CONTACT</a></li>
+            </ul>
+          </div>
+          
+        </div>
+      </nav>
+    <div class="container mt-5">
+        <h1>My Profile</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <form action="/update_adminprofile" method="POST">
+                    <hr>
+                    <div class="partition">
+                        <div class="userimg">
+                            <img src="static\assets\User_profile.jpeg" alt="image">
+                        </div>
+                        <div>
+                            <div class="form-group" id="name1">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ admin.name }}">
+                            </div>
+                            <div class="form-group" id="name2">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ admin.email }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactNo">Contact Number:</label>
+                        <input type="text" class="form-control" id="contactNo" name="contactNo" value="{{ admin.contactNo }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="orgClubName">Organizing Club Name:</label>
+                        <select id="orgClubName" name="orgClubName" required>
+                            <option value="none">none</option>
+                            {% for club_name in club_names %}
+                            <option value="{{ club_name }}" {% if admin.clubname == club_name %} selected {% endif %}>{{ club_name }}</option>
+
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="department">Department:</label>
+                        <input type="text" class="form-control" id="department" name="department" value="{{ admin.department }}">
+                    </div>
+                    <div class="sub-button">
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                        <a href="/verify_password_admin" class="btn btn-primary">Change Password</a>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

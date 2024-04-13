@@ -1,0 +1,82 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 90px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    margin-left: 40px;
+    width: 82%;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1b2938;
+    color: #fff;
+    text-decoration: none;
+    border: #1b2938;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #4ea9ea;
+
+}
+
+.userimg {
+    margin-left: 40px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.userimg img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.partition {
+    display: flex;
+    gap : 50px;
+}
+
+#name1 ,#name2{
+    width: 150%;
+    margin-top: 30px;
+}
+
+.sub-button {
+    display: flex;
+    gap: 30px;
+    justify-content: center;}
+
+
+#orgClubName{
+    margin-left: 20px;
+    height: 40px;
+    width: 30%;
+}

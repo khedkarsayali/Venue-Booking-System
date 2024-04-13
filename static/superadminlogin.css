@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(https://www.coep.org.in/sites/default/files/slideshow%20images/coepfinal1.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 400px; /* Adjusted width */
+    background: rgba(0, 0, 0, 0.5); /* Blurry black background */
+    border: 1px solid white;
+    backdrop-filter: blur(4px);
+    color: #fff;
+    border-radius: 12px;
+    padding: 30px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Take full width */
+    height: 50px; /* Increased height */
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 0 20px; /* Adjusted padding */
+    margin-bottom: 20px; /* Added margin bottom for spacing */
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 45px; /* Adjusted height */
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    border: 1px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.forgot-password {
+    text-align: center; /* Center align the forgot password link */
+}
+
+.forgot-password a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+}
+
+.link a{
+    
+    color: white;
+    align-self: center;
+}
+
+.link{
+    margin-top: 10px;
+
+}
