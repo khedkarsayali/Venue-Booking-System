@@ -20,6 +20,7 @@ with open('config.json', 'r') as c:
     local_server = params.get("local_server", True)
 
 
+
 app.config['UPLOAD_FOLDER'] = params['upload_location']
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@localhost/datahub'  # MySQL database URL
 db = SQLAlchemy(app)
