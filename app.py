@@ -482,8 +482,7 @@ def pending_events():
 
 @app.route('/rejected_events')
 def rejected_events():
-    # Query rejected events from the database
-    # rejected_events = Event.query.filter_by(status='Rejected').all()
+   
     rejected_events = Event.query.filter_by(status='Rejected').filter(Event.event_date >= datetime.now()).all()
     return render_template('display.html', all_hall_requests=rejected_events, category='Rejected Events')
 
@@ -841,6 +840,23 @@ def contact():
                           recipients=[params['gmail-user']]
                           )
     return render_template('contact.html', params=params)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
