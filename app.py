@@ -307,7 +307,7 @@ def add_user():
                 db.session.rollback()
                 flash(f'Error adding user: {str(e)}', 'error')
             finally:
-                # Close the database session
+               
                 db.session.close()
 
     return render_template('adminAddUsers.html')
@@ -375,7 +375,7 @@ def change_password_otp():
         confirm_password = request.form.get('confirm_password')
         email = request.form.get('email')
 
-        # Ensure the new password and confirm password match
+     
         if new_password != confirm_password:
             return "Passwords do not match"
 
@@ -384,7 +384,7 @@ def change_password_otp():
         if not otp_record:
             return "No OTP found for this email"
         
-        # Retrieve the user from the User table based on the email
+        
         user = User.query.filter_by(email=otp_record.email).first()
         if not user:
             return "User not found"
