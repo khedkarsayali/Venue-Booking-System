@@ -158,18 +158,18 @@ def adminlogin():
         admin = Admin.query.filter_by(email=email).first()
         
         if admin:
-            # If user exists, check if password matches
+            
             if admin.password == password:
-                # If password matches, set session and redirect to dashboard
+               
                 session['admin_id'] = admin.sno
-                flash('Login successful!', 'success')  # Flash message for successful login
+                flash('Login successful!', 'success')  
                 return redirect(url_for('admindashboard'))
             else:
-                # If password doesn't match, show error message
+                
                 flash('Incorrect password. Please try again.', 'error')
                 
         else:
-            # If user doesn't exist, show error message
+           
             flash('Email not found.', 'error')
     
     return render_template('index.html', error_messages={})
